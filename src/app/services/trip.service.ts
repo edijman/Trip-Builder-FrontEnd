@@ -1,14 +1,31 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import {City} from '../models/city';
+import { Capability } from 'protractor';
 @Injectable({
   providedIn: 'root'
 })
 export class TripService {
+  cities: City[];
+  baseUrl = 'http://www.slimapi.com'
+  constructor(private http: HttpClient) 
+  {
 
-  constructor() { }
+  }
 
 
-  //get Locations
+  //get Cities
+  getCities(): Observable<City[]>
+  {
+    return this.http.get(`${this.baseUrl}/cities`).pipe(
+      map((res) => {
+        this.cities = res['body'];
+        console.log(this.cities);
+        return this.cities;
+      }));
+  }
   //this will autofill form for select
 
   //get itinerary: One Way, 

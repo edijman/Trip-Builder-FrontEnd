@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-export interface City {
-  code: string;
-  name: string;
-}
+import {TripService} from '../../services/trip.service';
+import {City} from '../../models/city';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,9 +9,7 @@ export interface City {
 })
 export class HomeComponent implements OnInit {
   title = 'trip';
-  cities: City[] = [
-    {code: 'YUL', name: 'Montreal'},
-  ];
+  cities: City[];
 
   tripType = '';
   departDate: any;
@@ -26,22 +22,28 @@ export class HomeComponent implements OnInit {
   //get exactly the a year from current date
   aYearDate = this.datePipe.transform(this.date, "yyyy-MM-dd");
   tripStatus: boolean = true;
-  constructor(private datePipe: DatePipe) {
+
+
+  constructor(private datePipe: DatePipe, private tripService: TripService) {
 
    }
 
   ngOnInit()
   {
-    console.log(this.currentDate);
-    console.log(this.aYearDate);
-
 
   }
 
   // This function submit itineray form
   viewItinerary()
   {
-    console.log(this.departDate);
+    // console.log(`You would be leaving ${this.cities[0].name} on ${this.departDate} to ${this.cities[0].name} on ${this.arrivalDate}`);
+    this.tripService.getCities().subscribe(cities => 
+      {
+        this.cities = cities;
+        console.log(this.cities)
+        
+      }
+    );
   }
 
   //update trip status to dynamically create form
@@ -53,7 +55,6 @@ export class HomeComponent implements OnInit {
       this.tripStatus = true;
 
     }
-    console.log(this.tripStatus);
   }
 
 }

@@ -42,7 +42,7 @@
       
               <li class="list">
                 <div class="form-group">
-                  <label >Departure Date</label>
+                  <label >Departure Date:</label>
                   <input type="date" name="bday" max="{{aYearDate}}" 
                          min="{{currentDate}}" class="form-control" [(ngModel)]="departDate">
                  </div>
@@ -51,7 +51,7 @@
       
               <li class="list"  [hidden]="tripStatus">
                 <div class="form-group">
-                  <label >Return Date</label>
+                  <label >Return Date:</label>
                   <input type="date" name="bday" max="{{aYearDate}}" 
                          min="{{currentDate}}" class="form-control" [(ngModel)]="arrivalDate">
                  </div>
@@ -63,6 +63,7 @@
               </li>
             </ul>
           </div>
+          <!-- You would be leaving {{this.cities[0].name}} on {{departDate}} to {{this.cities[0].name}} on {{arrivalDate}} -->
         </mat-card>
       </div>
       

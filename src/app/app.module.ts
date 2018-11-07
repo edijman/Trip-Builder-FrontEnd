@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import {DatePipe} from '@angular/common';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +18,11 @@ import {DatePipe} from '@angular/common';
     BrowserModule, 
     MaterialModule, 
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule, 
+    HttpClientModule,
+    HttpClientModule,
   ],
-  providers: [TripService, DatePipe],
+  providers: [TripService, DatePipe, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
