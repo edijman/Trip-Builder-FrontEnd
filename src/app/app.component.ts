@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-
+export interface City {
+  code: string;
+  name: string;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'trip';
+  cities: City[] = [
+    {code: 'YUL', name: 'Montreal'},
+  ];
+
+  tripType = '';
 }
