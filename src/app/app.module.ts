@@ -7,6 +7,7 @@ import {MaterialModule} from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { HomeComponent } from './components/home/home.component';
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [TripService],
+  providers: [TripService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

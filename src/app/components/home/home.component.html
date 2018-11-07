@@ -33,9 +33,9 @@
           
               <li class="list">
                   <mat-form-field>
-                    <mat-select placeholder="Trip Type" [(value)]="tripType">
-                      <mat-option value="One Way">One Way</mat-option>
-                      <mat-option value="Round Trip">Round Trip</mat-option>
+                    <mat-select placeholder="Trip Type" [(value)]="tripType" >
+                      <mat-option value="One Way" (click)="updateTripStatus()">One Way</mat-option>
+                      <mat-option value="Round Trip" (click)="updateTripStatus()">Round Trip</mat-option>
                     </mat-select>
                   </mat-form-field>
               </li>
@@ -43,21 +43,19 @@
               <li class="list">
                 <div class="form-group">
                   <label >Departure Date</label>
-                  <input type="date" name="bday" max="3000-12-31" 
-                         min="1000-01-01" class="form-control" [(ngModel)]="departDate">
+                  <input type="date" name="bday" max="{{aYearDate}}" 
+                         min="{{currentDate}}" class="form-control" [(ngModel)]="departDate">
                  </div>
               </li>
       
       
-              <li class="list">
+              <li class="list"  [hidden]="tripStatus">
                 <div class="form-group">
                   <label >Return Date</label>
-                  <input type="date" name="bday" max="3000-12-31" 
-                         min="1000-01-01" class="form-control" [(ngModel)]="arrivalDate">
+                  <input type="date" name="bday" max="{{aYearDate}}" 
+                         min="{{currentDate}}" class="form-control" [(ngModel)]="arrivalDate">
                  </div>
               </li>
-
-
               <li class="list">
                 <div class="form-group">
                   <button mat-raised-button (click)="viewItinerary()">View Itinerary</button>
