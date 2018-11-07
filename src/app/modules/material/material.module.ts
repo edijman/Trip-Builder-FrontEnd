@@ -12,13 +12,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+// import { MatDatetimepickerModule } from "@mat-datetimepicker/core";
+// import { NativeDatetimeComponent } from "./native.component";
 @NgModule({
   imports: [
-    CommonModule, MatMenuModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatButtonModule,
-    MatGridListModule, MatExpansionModule, MatFormFieldModule, MatInputModule,MatTabsModule, MatButtonToggleModule
+    CommonModule, MatMenuModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatButtonModule, MatGridListModule, MatExpansionModule, MatFormFieldModule, MatInputModule,MatTabsModule, MatButtonToggleModule, MatSelectModule, MatCardModule, MatDatepickerModule
   ],
-  exports: [MatMenuModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatButtonModule,
-    MatGridListModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatTabsModule, MatButtonToggleModule],
+  exports: [MatMenuModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatButtonModule, MatGridListModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatTabsModule, MatButtonToggleModule, MatSelectModule, MatCardModule, MatDatepickerModule],
   declarations: []
 })
 export class MaterialModule { }

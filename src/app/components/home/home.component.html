@@ -1,0 +1,76 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Trip Builder
+  </h1>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 align-self-center">
+      <div>
+        <mat-card class="card">
+          <div>
+            <ul class="itinerary">
+              <li class="list">
+                <mat-form-field>
+                <mat-select placeholder="Departure">
+                  <mat-option *ngFor="let city of cities" [value]="city.code">
+                    {{city.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </li>
+          
+              <li class="list">
+                <mat-form-field>
+                <mat-select placeholder="Destination">
+                  <mat-option *ngFor="let city of cities" [value]="city.code">
+                    {{city.name}}
+                  </mat-option>
+                </mat-select>
+                </mat-form-field>
+              </li>
+          
+              <li class="list">
+                  <mat-form-field>
+                    <mat-select placeholder="Trip Type" [(value)]="tripType">
+                      <mat-option value="One Way">One Way</mat-option>
+                      <mat-option value="Round Trip">Round Trip</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </li>
+      
+              <li class="list">
+                <div class="form-group">
+                  <label >Departure Date</label>
+                  <input type="date" name="bday" max="3000-12-31" 
+                         min="1000-01-01" class="form-control" [(ngModel)]="departDate">
+                 </div>
+              </li>
+      
+      
+              <li class="list">
+                <div class="form-group">
+                  <label >Return Date</label>
+                  <input type="date" name="bday" max="3000-12-31" 
+                         min="1000-01-01" class="form-control" [(ngModel)]="arrivalDate">
+                 </div>
+              </li>
+
+
+              <li class="list">
+                <div class="form-group">
+                  <button mat-raised-button (click)="viewItinerary()">View Itinerary</button>
+                 </div>
+              </li>
+            </ul>
+          </div>
+        </mat-card>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+
+
