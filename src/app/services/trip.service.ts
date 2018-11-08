@@ -21,9 +21,7 @@ export class TripService {
   {
     return this.http.get(`${this.baseUrl}/cities`).pipe(
       map((res) => {
-        console.log(res);
-        this.cities = res[0].cities;
-        console.log(this.cities);
+        this.cities = res['cities'];
         return this.cities;
       }));
   }

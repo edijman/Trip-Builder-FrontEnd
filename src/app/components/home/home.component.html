@@ -13,8 +13,8 @@
             <ul class="itinerary">
               <li class="list">
                 <mat-form-field>
-                <mat-select placeholder="Departure">
-                  <mat-option *ngFor="let city of cities" [value]="city.code">
+                <mat-select placeholder="Departure" [(ngModel)]="selectedDepartureCity">
+                  <mat-option *ngFor="let city of cities" [value]="city.name">
                     {{city.name}}
                   </mat-option>
                 </mat-select>
@@ -23,8 +23,8 @@
           
               <li class="list">
                 <mat-form-field>
-                <mat-select placeholder="Destination">
-                  <mat-option *ngFor="let city of cities" [value]="city.code">
+                <mat-select placeholder="Destination" [(ngModel)]="selectedArrivalCity">
+                  <mat-option *ngFor="let city of cities" [value]="city.name">
                     {{city.name}}
                   </mat-option>
                 </mat-select>

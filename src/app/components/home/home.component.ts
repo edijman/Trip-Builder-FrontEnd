@@ -7,10 +7,12 @@ import {City} from '../../models/city';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   title = 'trip';
   cities: City[];
-
+  selectedDepartureCity : any;
+  selectedArrivalCity : any;
   tripType = '';
   departDate: any;
   arrivalDate: Date;
@@ -25,7 +27,8 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private datePipe: DatePipe, private tripService: TripService) {
-
+        //get cities to populate the drop down
+        this.getCities();
    }
 
   ngOnInit()
@@ -37,13 +40,10 @@ export class HomeComponent implements OnInit {
   viewItinerary()
   {
     // console.log(`You would be leaving ${this.cities[0].name} on ${this.departDate} to ${this.cities[0].name} on ${this.arrivalDate}`);
-    this.tripService.getCities().subscribe(cities => 
-      {
-        this.cities = cities;
-        console.log(this.cities)
-        
-      }
-    );
+    console.log(this.selectedDepartureCity);
+    console.log(this.selectedArrivalCity);
+
+
   }
 
   //update trip status to dynamically create form
@@ -55,6 +55,25 @@ export class HomeComponent implements OnInit {
       this.tripStatus = true;
 
     }
+    console.log(this.tripType);
+  }
+
+  //return the list of from the database
+  getCities()
+  {
+    this.tripService.getCities().subscribe(cities => 
+      {
+        this.cities = cities;
+        console.log(this.cities)
+        
+      }
+    );
+
+  }
+
+  SelectDepatureCity(){
+    // this.selectedCity.name = selectedCity;
+
   }
 
 }
