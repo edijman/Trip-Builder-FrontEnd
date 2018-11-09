@@ -9,3 +9,41 @@
 .card{
     max-width: 600px;
 }
+
+.content{
+    /* margin-top: 90px; */
+    position: absolute;
+   left: 10%;
+   right: 10%;
+    
+}
+
+.banner{
+    max-width: 50%;
+}
+
+.header{
+    font-weight: bold;
+}
+.list
+{
+    padding-bottom: 10px;
+}
+mat-list-item{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+    .content{
+        position: absolute;
+        left: 0px;
+        right: 0px;
+    }
+
+    .banner{
+        width: 100%;
+    }
+
+        
+}

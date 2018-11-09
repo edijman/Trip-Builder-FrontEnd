@@ -3,73 +3,102 @@
   <h1>
     Trip Builder
   </h1>
+  <hr>
 </div>
-<div class="container">
+<div class="containe-fluid">
+
   <div class="row justify-content-center">
-    <div class="col-12 align-self-center">
-      <div>
-        <mat-card class="card">
+        <div class="col-12 col-md-6 col-sm-6 align-self-center">
+            <div>
+                <ul class="itinerary">
+                  <li class="list">
+                    <mat-form-field>
+                    <mat-select placeholder="Departure" [(ngModel)]="selectedDepartureCity">
+                      <mat-option *ngFor="let city of cities" [value]="city.name">
+                        {{city.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  </li>
+              
+                  <li class="list">
+                    <mat-form-field>
+                    <mat-select placeholder="Destination" [(ngModel)]="selectedArrivalCity">
+                      <mat-option *ngFor="let city of cities" [value]="city.name">
+                        {{city.name}}
+                      </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                  </li>
+              
+                  <li class="list">
+                      <mat-form-field>
+                        <mat-select placeholder="Trip Type" [(value)]="tripType" >
+                          <mat-option value="One Way" (click)="updateTripStatus()">One Way</mat-option>
+                          <mat-option value="Round Trip" (click)="updateTripStatus()">Round Trip</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  </li>
+                </ul>
+              </div>
+          </div>
+   </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-sm-6 align-self-centerr">
+        <!-- <mat-card class="card"> -->
           <div>
             <ul class="itinerary">
               <li class="list">
-                <mat-form-field>
-                <mat-select placeholder="Departure" [(ngModel)]="selectedDepartureCity">
-                  <mat-option *ngFor="let city of cities" [value]="city.name">
-                    {{city.name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              </li>
-          
-              <li class="list">
-                <mat-form-field>
-                <mat-select placeholder="Destination" [(ngModel)]="selectedArrivalCity">
-                  <mat-option *ngFor="let city of cities" [value]="city.name">
-                    {{city.name}}
-                  </mat-option>
-                </mat-select>
-                </mat-form-field>
-              </li>
-          
-              <li class="list">
-                  <mat-form-field>
-                    <mat-select placeholder="Trip Type" [(value)]="tripType" >
-                      <mat-option value="One Way" (click)="updateTripStatus()">One Way</mat-option>
-                      <mat-option value="Round Trip" (click)="updateTripStatus()">Round Trip</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-              </li>
-      
-              <li class="list">
-                <div class="form-group">
-                  <label >Departure Date:</label>
-                  <input type="date" name="bday" max="{{aYearDate}}" 
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="departureDate">Departure Date</label>
+                  </div>
+                  <input id="departureDate" type="date" name="departureDate" max="{{aYearDate}}" 
                          min="{{currentDate}}" class="form-control" [(ngModel)]="departDate">
-                 </div>
+                </div>
               </li>
-      
       
               <li class="list"  [hidden]="tripStatus">
-                <div class="form-group">
-                  <label >Return Date:</label>
-                  <input type="date" name="bday" max="{{aYearDate}}" 
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="arrivalDate">Arrival Date</label>
+                  </div>
+                  <input id="arrivalDate" type="date" name="arrivalDate" max="{{aYearDate}}" 
                          min="{{currentDate}}" class="form-control" [(ngModel)]="arrivalDate">
-                 </div>
+                </div>
               </li>
               <li class="list">
                 <div class="form-group">
-                  <button mat-raised-button (click)="viewItinerary()">View Itinerary</button>
+                  <button mat-raised-button color="primary" (click)="viewItinerary()">View Itinerary</button>
                  </div>
               </li>
             </ul>
           </div>
-          <!-- You would be leaving {{this.cities[0].name}} on {{departDate}} to {{this.cities[0].name}} on {{arrivalDate}} -->
-        </mat-card>
-      </div>
-      
-      
     </div>
   </div>
+<hr>
+
+<div class="container">
+    <div class="content">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span class="header">Montreal -> Canada</span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+<!--       
+                <ul style="list-style: none;">
+
+                </ul> -->
+              </mat-expansion-panel>
+          </mat-accordion>
+        
+    </div>
+
+
+</div>
 </div>
 
 
