@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
+import { Observable} from 'rxjs';
+import { map} from 'rxjs/operators';
 import {City} from '../models/city';
-import { Capability } from 'protractor';
 @Injectable({
   providedIn: 'root'
 })
 export class TripService {
   cities: City[];
+  flights: any[];
   baseUrl = 'http://www.slimapi.com'
   constructor(private http: HttpClient) 
   {
@@ -25,6 +25,8 @@ export class TripService {
         return this.cities;
       }));
   }
+
+
   //this will autofill form for select
 
   //get itinerary: One Way, 
@@ -35,4 +37,13 @@ export class TripService {
   //get intinenary: Round Trip
   // this would collect destination, arrival, date leaving, 
   //would return itinerary -- yet to be formated
+  getItinerary(departureId, arrivalId, departDate): Observable<City[]>
+  {
+    return this.http.get(`${this.baseUrl}/itinerary/${departureId}/${arrivalId}/${departDate}`).pipe(
+      map((res) => {
+        console.log(res);
+        this.flights = res['Flight'];
+        return this.flights;
+      }));
+  }
 }

@@ -1,3 +1,6 @@
+.code{
+    color: rgb(196, 196, 196);
+}
 .itinerary{
     list-style: none; 
     display: inline-block;

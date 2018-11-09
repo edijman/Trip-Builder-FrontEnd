@@ -11,11 +11,22 @@ import {City} from '../../models/city';
 export class HomeComponent implements OnInit {
   title = 'trip';
   cities: City[];
-  selectedDepartureCity : any;
-  selectedArrivalCity : any;
+
+  firstFlights: any[];
+  secondFlights: any[];
+
+  selectedDepartureCityId : any;
+  selectedArrivalCityId : any;
+  arivalCityName: string;
+  departureCityName: string;
+
   tripType = '';
   departDate: any;
   arrivalDate: Date;
+
+  selectDepartStatus = false;
+  selectArrivalStatus = false;
+
  
   // get current date 
   currentDate = this.datePipe.transform(Date.now(), "yyyy-MM-dd");
@@ -39,9 +50,39 @@ export class HomeComponent implements OnInit {
   // This function submit itineray form
   viewItinerary()
   {
-    // console.log(`You would be leaving ${this.cities[0].name} on ${this.departDate} to ${this.cities[0].name} on ${this.arrivalDate}`);
-    console.log(this.selectedDepartureCity);
-    console.log(this.selectedArrivalCity);
+    if(this.tripStatus)
+    {
+      this.tripService.getItinerary(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate).subscribe(flights => 
+        {
+          this.firstFlights = flights;
+          // console.log(this.firstFlights)
+          // console.log(this.departDate);
+          
+        }
+      );
+    }
+    else
+    {
+
+      this.tripService.getItinerary(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate).subscribe(flights => 
+        {
+          this.firstFlights = flights;
+          // console.log(this.firstFlights)
+          // console.log(this.departDate);
+          
+        }
+      );
+
+      this.tripService.getItinerary(this.selectedArrivalCityId, this.selectedDepartureCityId, this.departDate).subscribe(flights => 
+        {
+          this.secondFlights = flights;
+          // console.log(this.secondFlights)
+          // console.log(this.departDate);
+          
+        }
+      );
+
+    }
 
 
   }
@@ -64,16 +105,25 @@ export class HomeComponent implements OnInit {
     this.tripService.getCities().subscribe(cities => 
       {
         this.cities = cities;
-        console.log(this.cities)
+        // console.log(this.cities)
         
       }
     );
 
   }
+  setArrivalCityName(event)
+  {
+    this.setArrivalCityName = event.srcElement.innerText;
+     this.selectArrivalStatus =true;
+  }
 
-  SelectDepatureCity(){
-    // this.selectedCity.name = selectedCity;
+  setDepartureCityName(event)
+  {
+    this.departureCityName = event.srcElement.innerText;
+    this.selectDepartStatus =true;
 
   }
+
+
 
 }

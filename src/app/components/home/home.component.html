@@ -13,8 +13,8 @@
                 <ul class="itinerary">
                   <li class="list">
                     <mat-form-field>
-                    <mat-select placeholder="Departure" [(ngModel)]="selectedDepartureCity">
-                      <mat-option *ngFor="let city of cities" [value]="city.name">
+                    <mat-select placeholder="Departure" [(ngModel)]="selectedDepartureCityId" [disabled]="selectDepartStatus">
+                      <mat-option *ngFor="let city of cities" [value]="city.id" (click)="setDepartureCityName($event)">
                         {{city.name}}
                       </mat-option>
                     </mat-select>
@@ -23,9 +23,9 @@
               
                   <li class="list">
                     <mat-form-field>
-                    <mat-select placeholder="Destination" [(ngModel)]="selectedArrivalCity">
-                      <mat-option *ngFor="let city of cities" [value]="city.name">
-                        {{city.name}}
+                    <mat-select placeholder="Destination" [(ngModel)]="selectedArrivalCityId" [disabled]="selectArrivalStatus">
+                      <mat-option *ngFor="let city of cities" [value]="city.id" (click)="setArrivalCityName($event)">
+                        {{city.name}} 
                       </mat-option>
                     </mat-select>
                     </mat-form-field>
@@ -34,7 +34,7 @@
                   <li class="list">
                       <mat-form-field>
                         <mat-select placeholder="Trip Type" [(value)]="tripType" >
-                          <mat-option value="One Way" (click)="updateTripStatus()">One Way</mat-option>
+                          <mat-option value="One Way" selected (click)="updateTripStatus()">One Way</mat-option>
                           <mat-option value="Round Trip" (click)="updateTripStatus()">Round Trip</mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -80,22 +80,33 @@
 <hr>
 
 <div class="container">
-    <div class="content">
-            <mat-accordion>
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <span class="header">Montreal -> Canada</span>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-<!--       
-                <ul style="list-style: none;">
-
-                </ul> -->
-              </mat-expansion-panel>
-          </mat-accordion>
+  <div class="row" *ngIf="tripStatus">
         
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 myth" *ngFor="let flight of firstFlights;" >
+      <mat-card>
+            <span>{{departureCityName}} 
+              <span class="code">&nbsp;({{flight.departure_airport}})&nbsp;</span>
+            </span> &nbsp;<i class="fas fa-plane-departure"></i> &nbsp;
+            <span>{{setArrivalCityName}}
+              <span class="code">&nbsp;({{flight.arrival_airport}})&nbsp;</span></span>
+            <hr>
+            <div>
+              <span style="font-weight: bold">Airline: </span><span>{{flight.airline}}</span>
+              <br>
+              <span style="font-weight: bold">Date: </span><span>{{flight.departure_time | date}}</span>
+              <br>
+              <span style="font-weight: bold">Departure Time: </span> <span>{{flight.departure_time | date:'shortTime'}}</span>
+              <br>
+              <span style="font-weight: bold">Departure Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
+              <br>
+              <span style="font-weight: bold">Price: </span><span>CAD {{flight.price}}</span>
+            </div>
+                
+      </mat-card>
     </div>
+
+  </div>
+  
 
 
 </div>
