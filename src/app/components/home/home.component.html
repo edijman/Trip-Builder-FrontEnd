@@ -8,7 +8,7 @@
 <div class="containe-fluid">
 
   <div class="row justify-content-center">
-        <div class="col-12 col-md-6 col-sm-6 align-self-center">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 align-self-center">
             <div>
                 <ul class="itinerary">
                   <li class="list">
@@ -45,7 +45,7 @@
    </div>
 
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-sm-6 align-self-center">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 align-self-center">
         <!-- <mat-card class="card"> -->
           <div>
             <ul class="itinerary">
@@ -95,7 +95,7 @@
   </div>
   <hr>
   <div class="row" *ngIf="tripStatus">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 myth" *ngFor="let flight of firstFlights | filterEvent: searchText" >
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let flight of firstFlights | filterEvent: searchText" >
       <mat-card>
             <span>{{departureCityName}} 
               <span class="code">&nbsp;({{flight.departure_airport}})&nbsp;</span>
