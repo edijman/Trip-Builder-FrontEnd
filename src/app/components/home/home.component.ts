@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {TripService} from '../../services/trip.service';
 import {City} from '../../models/city';
+import * as _ from 'lodash'; 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,6 +16,8 @@ export class HomeComponent implements OnInit {
   firstFlights: any[];
   secondFlights: any[];
 
+  airlines: any[];
+
   selectedDepartureCityId : any;
   selectedArrivalCityId : any;
   arivalCityName: string;
@@ -27,7 +30,7 @@ export class HomeComponent implements OnInit {
   selectDepartStatus = false;
   selectArrivalStatus = false;
 
- 
+  searchText: string;
   // get current date 
   currentDate = this.datePipe.transform(Date.now(), "yyyy-MM-dd");
   nextYear: any = new Date().getFullYear() + 1;
@@ -47,6 +50,18 @@ export class HomeComponent implements OnInit {
 
   }
 
+  getAirline(departureId, arrivalId, departureDate)
+  {
+
+    this.tripService.getAirline(departureId, arrivalId, departureDate).subscribe(airlines => 
+      {
+        this.airlines = airlines;
+        console.log(this.airlines);
+        
+      }
+    );
+  }
+
   // This function submit itineray form
   viewItinerary()
   {
@@ -55,8 +70,7 @@ export class HomeComponent implements OnInit {
       this.tripService.getItinerary(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate).subscribe(flights => 
         {
           this.firstFlights = flights;
-          // console.log(this.firstFlights)
-          // console.log(this.departDate);
+          this.getAirline(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate);
           
         }
       );
@@ -123,6 +137,7 @@ export class HomeComponent implements OnInit {
     this.selectDepartStatus =true;
 
   }
+
 
 
 

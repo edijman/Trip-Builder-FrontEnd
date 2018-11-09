@@ -1,8 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
+  <!-- <h1>
     Trip Builder
-  </h1>
+  </h1> -->
   <hr>
 </div>
 <div class="containe-fluid">
@@ -45,7 +45,7 @@
    </div>
 
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-sm-6 align-self-centerr">
+    <div class="col-12 col-md-6 col-sm-6 align-self-center">
         <!-- <mat-card class="card"> -->
           <div>
             <ul class="itinerary">
@@ -81,8 +81,21 @@
 
 <div class="container">
   <div class="row" *ngIf="tripStatus">
-        
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 myth" *ngFor="let flight of firstFlights;" >
+      <div class="col-12">
+        <h4>Sort by: </h4>
+          <mat-form-field>
+              <mat-select placeholder="Airline" [(ngModel)]="searchText">
+                <mat-option [value]="">All</mat-option>
+                <mat-option *ngFor="let flight of firstFlights | removeduplicates" [value]="flight.airline">
+                  {{flight.airline}} 
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="tripStatus">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 myth" *ngFor="let flight of firstFlights | filterEvent: searchText" >
       <mat-card>
             <span>{{departureCityName}} 
               <span class="code">&nbsp;({{flight.departure_airport}})&nbsp;</span>

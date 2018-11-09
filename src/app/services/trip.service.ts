@@ -9,6 +9,7 @@ import {City} from '../models/city';
 export class TripService {
   cities: City[];
   flights: any[];
+  airline: any[];
   baseUrl = 'http://www.slimapi.com'
   constructor(private http: HttpClient) 
   {
@@ -44,6 +45,15 @@ export class TripService {
         console.log(res);
         this.flights = res['Flight'];
         return this.flights;
+      }));
+  }
+  getAirline(departureId, arrivalId, departDate): Observable<City[]>
+  {
+    return this.http.get(`${this.baseUrl}/itinerary/${departureId}/${arrivalId}/${departDate}`).pipe(
+      map((res) => {
+        console.log(res);
+        this.airline = res['Airline'];
+        return this.airline;
       }));
   }
 }

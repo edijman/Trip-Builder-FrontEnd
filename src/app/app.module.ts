@@ -9,10 +9,14 @@ import {FormsModule} from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import {DatePipe} from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {FilterEventPipe} from './Pipes/filter.pipe';
+import { RemovePipe } from './Pipes/duplicate.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    FilterEventPipe,
+    RemovePipe
   ],
   imports: [
     BrowserModule, 
