@@ -1,8 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <!-- <h1>
+  <h1>
     Trip Builder
-  </h1> -->
+  </h1>
   <hr>
 </div>
 <div class="containe-fluid">
@@ -79,50 +79,85 @@
   </div>
 <hr>
 
-<div class="container">
-  <div class="row" *ngIf="tripStatus">
+<div class="container-fluid">
+  <div class="row" >
       <div class="col-12">
         <h4>Sort by: </h4>
           <mat-form-field>
-              <mat-select placeholder="Airline" [(ngModel)]="searchText">
+              <mat-select placeholder="Airline" [(ngModel)]="searchByAirline">
                 <mat-option [value]="">All</mat-option>
-                <mat-option *ngFor="let flight of firstFlights | removeduplicates" [value]="flight.airline">
-                  {{flight.airline}} 
+                <mat-option *ngFor="let airline of airlines" [value]="airline.name">
+                  {{airline.name}} 
                 </mat-option>
               </mat-select>
           </mat-form-field>
     </div>
   </div>
   <hr>
-  <div class="row" *ngIf="tripStatus">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let flight of firstFlights | filterEvent: searchText" >
-      <mat-card>
-            <span>{{departureCityName}} 
-              <span class="code">&nbsp;({{flight.departure_airport}})&nbsp;</span>
-            </span> &nbsp;<i class="fas fa-plane-departure"></i> &nbsp;
-            <span>{{setArrivalCityName}}
-              <span class="code">&nbsp;({{flight.arrival_airport}})&nbsp;</span></span>
-            <hr>
-            <div>
-              <span style="font-weight: bold">Airline: </span><span>{{flight.airline}}</span>
-              <br>
-              <span style="font-weight: bold">Date: </span><span>{{flight.departure_time | date}}</span>
-              <br>
-              <span style="font-weight: bold">Departure Time: </span> <span>{{flight.departure_time | date:'shortTime'}}</span>
-              <br>
-              <span style="font-weight: bold">Departure Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
-              <br>
-              <span style="font-weight: bold">Price: </span><span>CAD {{flight.price}}</span>
+
+  <mat-tab-group>
+
+      <mat-tab label="First Flight">
+          <div class="row result">
+              <div *ngIf="firstFlights?.length < 1" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div  style="text-align: center">No flight available.</div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let flight of firstFlights | filterEvent: searchByAirline">
+                    <mat-card class="card">
+                      
+                          <span>{{departureCityName}} 
+                            <span class="code">&nbsp;({{flight.departure_airport}})&nbsp;</span>
+                          </span> &nbsp;<i class="fas fa-plane-departure"></i> &nbsp;
+                          <span>{{setArrivalCityName}}
+                            <span class="code">&nbsp;({{flight.arrival_airport}})&nbsp;</span></span>
+                          <hr>
+                          <div>
+                            <span style="font-weight: bold">Airline: </span><span>{{flight.airline}}</span>
+                            <br>
+                            <span style="font-weight: bold">Date: </span><span>{{flight.departure_time | date}}</span>
+                            <br>
+                            <span style="font-weight: bold">Departure Time: </span> <span>{{flight.departure_time | date:'shortTime'}}</span>
+                            <br>
+                            <span style="font-weight: bold">Departure Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
+                            <br>
+                            <span style="font-weight: bold">Price: </span><span>CAD {{flight.price}}</span>
+                          </div>
+                    </mat-card>
+              </div>
             </div>
-                
-      </mat-card>
-    </div>
+      </mat-tab>
+
+      <mat-tab label="Second Flight" [disabled]="tripStatus">
+        <div class="row result">
+            <div *ngIf="secondFlights?.length < 1" class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+                <div style="text-align: center">No flight available.</div>
+            </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let flight2 of secondFlights | filterEvent: searchByAirline">
+                  <mat-card class="card"> 
+                        <span>{{departureCityName}} 
+                          <span class="code">&nbsp;({{flight.departure_airport}})&nbsp;</span>
+                        </span> &nbsp;<i class="fas fa-plane-departure"></i> &nbsp;
+                        <span>{{setArrivalCityName}}
+                          <span class="code">&nbsp;({{flight.arrival_airport}})&nbsp;</span></span>
+                        <hr>
+                        <div>
+                          <span style="font-weight: bold">Airline: </span><span>{{flight.airline}}</span>
+                          <br>
+                          <span style="font-weight: bold">Date: </span><span>{{flight.departure_time | date}}</span>
+                          <br>
+                          <span style="font-weight: bold">Departure Time: </span> <span>{{flight.departure_time | date:'shortTime'}}</span>
+                          <br>
+                          <span style="font-weight: bold">Departure Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
+                          <br>
+                          <span style="font-weight: bold">Price: </span><span>CAD {{flight.price}}</span>
+                        </div>
+                  </mat-card>
+            </div>
+          </div>
+      </mat-tab>
+    </mat-tab-group>
 
   </div>
-  
-
-
-</div>
 </div>
 
 

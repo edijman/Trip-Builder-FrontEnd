@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
 
   selectedDepartureCityId : any;
   selectedArrivalCityId : any;
-  arivalCityName: string;
-  departureCityName: string;
+  arivalCityName: string ="";
+  departureCityName: string = "";
 
   tripType = '';
   departDate: any;
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   selectDepartStatus = false;
   selectArrivalStatus = false;
 
-  searchText: string;
+  searchByAirline: string;
   // get current date 
   currentDate = this.datePipe.transform(Date.now(), "yyyy-MM-dd");
   nextYear: any = new Date().getFullYear() + 1;
@@ -62,44 +62,43 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // This function submit itineray form
+
+
   viewItinerary()
   {
     if(this.tripStatus)
     {
-      this.tripService.getItinerary(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate).subscribe(flights => 
-        {
-          this.firstFlights = flights;
-          this.getAirline(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate);
-          
-        }
-      );
+      this.getDirectItinerary(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate);
     }
     else
     {
-
-      this.tripService.getItinerary(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate).subscribe(flights => 
-        {
-          this.firstFlights = flights;
-          // console.log(this.firstFlights)
-          // console.log(this.departDate);
-          
-        }
-      );
-
-      this.tripService.getItinerary(this.selectedArrivalCityId, this.selectedDepartureCityId, this.departDate).subscribe(flights => 
-        {
-          this.secondFlights = flights;
-          // console.log(this.secondFlights)
-          // console.log(this.departDate);
-          
-        }
-      );
+      this.getDirectItinerary(this.selectedDepartureCityId, this.selectedArrivalCityId, this.departDate)
+      this.getReverseItinerary(this.selectedArrivalCityId, this.selectedDepartureCityId, this.arrivalDate);
 
     }
-
-
   }
+
+    // This function get the itinerary from the service provider
+    getDirectItinerary(departureId, arrivalId, departureDate){
+      this.tripService.getItinerary(departureId, arrivalId, departureDate).subscribe(flights => 
+        {
+          this.firstFlights = flights;
+          this.getAirline(departureId, arrivalId, departureDate);
+          
+        }
+      );
+    }
+
+    // This function get the itinerary from the service provider
+    getReverseItinerary(departureId, arrivalId, departureDate){
+      this.tripService.getItinerary(departureId, arrivalId, departureDate).subscribe(flights => 
+        {
+          this.secondFlights = flights;
+          this.getAirline(departureId, arrivalId, departureDate);
+          
+        }
+      );
+    }
 
   //update trip status to dynamically create form
   updateTripStatus(){
@@ -125,6 +124,7 @@ export class HomeComponent implements OnInit {
     );
 
   }
+
   setArrivalCityName(event)
   {
     this.setArrivalCityName = event.srcElement.innerText;

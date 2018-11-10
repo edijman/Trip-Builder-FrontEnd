@@ -10,7 +10,7 @@ export class TripService {
   cities: City[];
   flights: any[];
   airline: any[];
-  baseUrl = 'http://www.slimapi.com'
+  baseUrl = 'http://localhost/trip'
   constructor(private http: HttpClient) 
   {
 
@@ -51,7 +51,7 @@ export class TripService {
   {
     return this.http.get(`${this.baseUrl}/itinerary/${departureId}/${arrivalId}/${departDate}`).pipe(
       map((res) => {
-        console.log(res);
+        // console.log(res);
         this.airline = res['Airline'];
         return this.airline;
       }));

@@ -10,7 +10,8 @@
     padding-right: 20px;
 }
 .card{
-    max-width: 600px;
+    /* max-width: 600px; */
+    margin-bottom: 15px;
 }
 
 .content{
@@ -36,7 +37,13 @@ mat-list-item{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
+.result{
+    margin-top: 15px;
+}
+.mat-tab-body-content {
+    height: 100%;
+    overflow: scroll;
+}
 @media only screen and (max-width: 900px) {
     .content{
         position: absolute;
