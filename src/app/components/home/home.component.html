@@ -118,10 +118,12 @@
                             <br>
                             <span style="font-weight: bold">Departure Time: </span> <span>{{flight.departure_time | date:'shortTime'}}</span>
                             <br>
-                            <span style="font-weight: bold">Departure Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
+                            <span style="font-weight: bold">Arrival Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
                             <br>
                             <span style="font-weight: bold">Price: </span><span>CAD {{flight.price}}</span>
-                          </div>
+                        </div>
+                        <button mat-raised-button color="primary" [hidden]="!tripStatus">Book Flight</button>
+                        <button mat-raised-button color="primary" [hidden]="tripStatus">Add to Itinerary</button>
                     </mat-card>
               </div>
             </div>
@@ -132,13 +134,13 @@
             <div *ngIf="secondFlights?.length < 1" class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
                 <div style="text-align: center">No flight available.</div>
             </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let flight2 of secondFlights | filterEvent: searchByAirline">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let flight of secondFlights | filterEvent: searchByAirline">
                   <mat-card class="card"> 
-                        <span>{{departureCityName}} 
+                        <span> {{setArrivalCityName}}&nbsp;</span>
+                          <span class="code">
+                         ({{flight.arrival_airport}})&nbsp;</span>
+                         <span><i class="fas fa-plane-departure"></i> &nbsp; {{departureCityName}}</span>
                           <span class="code">&nbsp;({{flight.departure_airport}})&nbsp;</span>
-                        </span> &nbsp;<i class="fas fa-plane-departure"></i> &nbsp;
-                        <span>{{setArrivalCityName}}
-                          <span class="code">&nbsp;({{flight.arrival_airport}})&nbsp;</span></span>
                         <hr>
                         <div>
                           <span style="font-weight: bold">Airline: </span><span>{{flight.airline}}</span>
@@ -147,10 +149,11 @@
                           <br>
                           <span style="font-weight: bold">Departure Time: </span> <span>{{flight.departure_time | date:'shortTime'}}</span>
                           <br>
-                          <span style="font-weight: bold">Departure Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
+                          <span style="font-weight: bold">Arrival Time: </span><span>{{flight.arrival_time | date:'shortTime'}}</span>
                           <br>
                           <span style="font-weight: bold">Price: </span><span>CAD {{flight.price}}</span>
-                        </div>
+                      </div>
+                      <button mat-raised-button color="primary">Add to Itinerary</button>
                   </mat-card>
             </div>
           </div>

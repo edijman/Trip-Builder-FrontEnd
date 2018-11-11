@@ -10,7 +10,7 @@ export class TripService {
   cities: City[];
   flights: any[];
   airline: any[];
-  baseUrl = 'http://localhost/trip'
+  baseUrl = 'http://adigunidris.com/api'
   constructor(private http: HttpClient) 
   {
 
