@@ -1,11 +1,18 @@
 # Trip
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1. This project in the front end for <a href="https://github.com/edijman/Trip-Builder-FrontEnd" target="_blank">Trip Builder BankEnd</a>
+
+
+##Installation
+
+Download and install NPM<br>
+Download and install Angular CLI<br>
+Download the Trip Builder FrontEnd, navigate to the directory of the Trip Builder using the terminal, run 'npm install'<br>
+Go to 'src/app/services/trip.service.ts, update the baserUrl variable to url of your <a href="https://github.com/edijman/Trip-Builder-BackEnd" target="_blank">Trip Builder BackEnd</a>
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
